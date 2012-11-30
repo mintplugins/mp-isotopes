@@ -8,7 +8,7 @@ Stable tag: 4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-This plugin give you a template tag that you can put on any archive, category, or tag page
+Gives a template tag that you can put on any archive, category, or tag page
 so that you can sort the posts using the isotope js functionality.
 
 == Description ==
@@ -62,10 +62,3 @@ This plugin is built to work only with normal posts, the Easy Digital Downloads 
 
 = 1.0 =
 * Original release
-
-
-Here's a link to [WordPress](http://wordpress.org/ "Your favorite software") and one to [Markdown's Syntax Documentation][markdown syntax].
-Titles are optional, naturally.
-
-[markdown syntax]: http://daringfireball.net/projects/markdown/syntax
-            "Markdown is what the parser uses to process much of the readme file"
