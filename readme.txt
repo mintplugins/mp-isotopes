@@ -8,8 +8,7 @@ Stable tag: 4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Gives a template tag that you can put on any archive, category, or tag page
-so that you can sort the posts using the isotope js functionality.
+This plugin give you a template tag that uses isotope js functionality.
 
 == Description ==
 
@@ -40,6 +39,10 @@ After you install, put the following tag just before 'the loop' on any archive p
 
 `<?php mintthemes_isotopes(); ?>`
 
+= Why isn't this working?  =
+
+The theme you are using must make use of the post_class for this to function correctly. If it isn't working, there's a good chance that hasn't been utilized in your theme.
+
 = How do I disable the built in CSS style for the tag buttons? =
 
 In the WordPress admin area, go to Settings > Isotopes Settings and turn of the built in CSS.
@@ -59,6 +62,9 @@ This plugin is built to work only with normal posts, the Easy Digital Downloads 
 2. This is a screenshot of the isotope tags being used with the armonico theme by [Mint Themes] (http://mintthemes.com "Niche WordPress Themes"). If a user click on one of the tags, the shirts auto re-sort themselves on the fly with a cool little animation.
 
 == Changelog ==
+
+= 1.1 =
+* Updates to Archive base page
 
 = 1.0 =
 * Original release

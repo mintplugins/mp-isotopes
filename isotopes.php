@@ -94,7 +94,7 @@ if ( ! function_exists( 'mintthemes_isotopes' ) ):
 				$prefix = "tag";
 			}
 			else{ //base archive
-					$args = array('base_archive' => 'true');
+					$args = array('base_archive' => 'true', 'base_taxonomy' => 'category', 'related_taxonomy_items' => 'post_tag');
 					$prefix = "tag";
 			}
 			
@@ -128,7 +128,7 @@ endif; //mintthemes_isotopes
 if ( ! function_exists( 'mintthemes_isotopes_get_category_tags' ) ):
 	function mintthemes_isotopes_get_category_tags($args) {
 		global $wpdb;
-		if ($args['base_archive'] == "true"){
+		if (isset($args['base_archive'])){
 			$tags = $wpdb->get_results
 			("
 				SELECT DISTINCT terms2.term_id as tag_id, terms2.name as tag_name, null as tag_link
