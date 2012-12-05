@@ -63,6 +63,9 @@ This plugin is built to work only with normal posts, the Easy Digital Downloads 
 
 == Changelog ==
 
+= 1.2 =
+* taxonomy check for tag/cat filters
+
 = 1.1 =
 * Updates to Archive base page
 
