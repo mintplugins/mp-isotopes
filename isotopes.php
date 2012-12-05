@@ -188,7 +188,7 @@ endif;
  */
 if ( ! function_exists( 'mintthemes_isotopes_container_div_start' ) ):
 	function mintthemes_isotopes_container_div_start() {
-		if (is_category() || is_tax() || is_archive() || is_tax('download_category') || is_tax('download_tag') || is_tax('product_cat') || is_tax('product_tag') || is_home() ){
+		if (is_category() || is_tax() || is_archive() || is_tax('download_category') || is_tax('download_tag') || is_tax('product_cat') || is_tax('product_tag') || is_home()){
 			echo '<div class="mintthemes_isotopes_container">';
 		}
 	}
@@ -200,7 +200,7 @@ add_action( 'loop_start', 'mintthemes_isotopes_container_div_start' );
  */
 if ( ! function_exists( 'mintthemes_isotopes_container_div_end' ) ):
 	function mintthemes_isotopes_container_div_end() {
-		if (is_category() || is_tax() || is_archive() || is_tax('download_category') || is_tax('download_tag') || is_tax('product_cat') || is_tax('product_tag') || is_home()){
+		if (is_category() || is_tax() || is_archive() || is_tax('download_category') || is_tax('download_tag') || is_tax('product_cat') || is_tax('product_tag') || is_home() ){
 			echo '</div>';
 		}
 		
@@ -214,43 +214,51 @@ add_action( 'loop_end', 'mintthemes_isotopes_container_div_end' );
 if( !function_exists( 'mintthemes_isotopes_custom_taxonomy_post_class' ) ) {
 
 	function mintthemes_isotopes_custom_taxonomy_post_class( $classes, $class, $ID ) {
-
-		$terms = get_the_terms( (int) $ID, 'download_tag' );//edd tags
-
-		if( !empty( $terms ) ) {
-			foreach( (array) $terms as $order => $term ) {
-				if( !in_array( $term->slug, $classes ) ) {
-					$classes[] = "tag-" . $term->slug;
+		
+		if (is_tax('download_category')){
+			$terms = get_the_terms( (int) $ID, 'download_tag' );//edd tags
+	
+			if( !empty( $terms ) ) {
+				foreach( (array) $terms as $order => $term ) {
+					if( !in_array( $term->slug, $classes ) ) {
+						$classes[] = "tag-" . $term->slug;
+					}
 				}
 			}
 		}
 		
-		$terms = get_the_terms( (int) $ID, 'download_category' );//edd categories
-
-		if( !empty( $terms ) ) {
-			foreach( (array) $terms as $order => $term ) {
-				if( !in_array( $term->slug, $classes ) ) {
-					$classes[] = "category-" . $term->slug;
+		if (is_tax('download_tag')){
+			$terms = get_the_terms( (int) $ID, 'download_category' );//edd categories
+	
+			if( !empty( $terms ) ) {
+				foreach( (array) $terms as $order => $term ) {
+					if( !in_array( $term->slug, $classes ) ) {
+						$classes[] = "category-" . $term->slug;
+					}
 				}
 			}
 		}
 		
-		$terms = get_the_terms( (int) $ID, 'product_tag' );//woocommerce tags
-
-		if( !empty( $terms ) ) {
-			foreach( (array) $terms as $order => $term ) {
-				if( !in_array( $term->slug, $classes ) ) {
-					$classes[] = "tag-" . $term->slug;
+		if (is_tax('product_cat')){
+			$terms = get_the_terms( (int) $ID, 'product_tag' );//woocommerce tags
+	
+			if( !empty( $terms ) ) {
+				foreach( (array) $terms as $order => $term ) {
+					if( !in_array( $term->slug, $classes ) ) {
+						$classes[] = "tag-" . $term->slug;
+					}
 				}
 			}
 		}
 		
-		$terms = get_the_terms( (int) $ID, 'product_cat' );//woocommerce cat
-
-		if( !empty( $terms ) ) {
-			foreach( (array) $terms as $order => $term ) {
-				if( !in_array( $term->slug, $classes ) ) {
-					$classes[] = "category-" . $term->slug;
+		if (is_tax('product_tag')){
+			$terms = get_the_terms( (int) $ID, 'product_cat' );//woocommerce cat
+	
+			if( !empty( $terms ) ) {
+				foreach( (array) $terms as $order => $term ) {
+					if( !in_array( $term->slug, $classes ) ) {
+						$classes[] = "category-" . $term->slug;
+					}
 				}
 			}
 		}
