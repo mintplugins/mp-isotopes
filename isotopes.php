@@ -94,15 +94,15 @@ if ( ! function_exists( 'mintthemes_isotopes' ) ):
 				$prefix = "tag";
 			}
 			elseif ( is_tax('plugin_cat') ) { //woocommerce category tax page
-				$term = get_term_by( 'slug', get_query_var('product_cat'), 'product_cat' );
+				$term = get_term_by( 'slug', get_query_var('product_cat'), 'plugin_cat' );
 				$tax = $term->term_id;
-				$args = array('base_taxonomy' => 'product_cat','current_taxonomy_item' => $tax, 'related_taxonomy_items' => 'product_tag' );
+				$args = array('base_taxonomy' => 'plugin_cat','current_taxonomy_item' => $tax, 'related_taxonomy_items' => 'plugin_tag' );
 				$prefix = "tag";
 			}
 			elseif ( is_tax('plugin_tag') ) { //woocommerce tag tax page
-				$term = get_term_by( 'slug', get_query_var('product_tag'), 'product_tag' );
+				$term = get_term_by( 'slug', get_query_var('plugin_tag'), 'plugin_tag' );
 				$tax = $term->term_id;
-				$args = array('base_taxonomy' => 'product_cat','current_taxonomy_item' => $tax, 'related_taxonomy_items' => 'product_cat' );
+				$args = array('base_taxonomy' => 'plugin_cat','current_taxonomy_item' => $tax, 'related_taxonomy_items' => 'plugin_cat' );
 				$prefix = "category";
 			}
 			elseif(is_post_type_archive('plugin')){//woocommerce base archive page
