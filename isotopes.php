@@ -93,6 +93,22 @@ if ( ! function_exists( 'mintthemes_isotopes' ) ):
 				$args = array('base_archive' => 'true', 'base_taxonomy' => 'product_cat', 'related_taxonomy_items' => 'product_tag');
 				$prefix = "tag";
 			}
+			elseif ( is_tax('plugin_cat') ) { //woocommerce category tax page
+				$term = get_term_by( 'slug', get_query_var('product_cat'), 'product_cat' );
+				$tax = $term->term_id;
+				$args = array('base_taxonomy' => 'product_cat','current_taxonomy_item' => $tax, 'related_taxonomy_items' => 'product_tag' );
+				$prefix = "tag";
+			}
+			elseif ( is_tax('plugin_tag') ) { //woocommerce tag tax page
+				$term = get_term_by( 'slug', get_query_var('product_tag'), 'product_tag' );
+				$tax = $term->term_id;
+				$args = array('base_taxonomy' => 'product_cat','current_taxonomy_item' => $tax, 'related_taxonomy_items' => 'product_cat' );
+				$prefix = "category";
+			}
+			elseif(is_post_type_archive('plugin')){//woocommerce base archive page
+				$args = array('base_archive' => 'true', 'base_taxonomy' => 'product_cat', 'related_taxonomy_items' => 'product_tag');
+				$prefix = "tag";
+			}
 			else{ //base archive
 					$args = array('base_archive' => 'true', 'base_taxonomy' => 'category', 'related_taxonomy_items' => 'post_tag');
 					$prefix = "tag";
@@ -253,6 +269,30 @@ if( !function_exists( 'mintthemes_isotopes_custom_taxonomy_post_class' ) ) {
 		
 		if (is_tax('product_tag')){
 			$terms = get_the_terms( (int) $ID, 'product_cat' );//woocommerce cat
+	
+			if( !empty( $terms ) ) {
+				foreach( (array) $terms as $order => $term ) {
+					if( !in_array( $term->slug, $classes ) ) {
+						$classes[] = "category-" . $term->slug;
+					}
+				}
+			}
+		}
+		
+		if (is_tax('plugin_cat') || is_post_type_archive('plugin')){
+			$terms = get_the_terms( (int) $ID, 'plugin_tag' );//woocommerce tags
+	
+			if( !empty( $terms ) ) {
+				foreach( (array) $terms as $order => $term ) {
+					if( !in_array( $term->slug, $classes ) ) {
+						$classes[] = "tag-" . $term->slug;
+					}
+				}
+			}
+		}
+		
+		if (is_tax('plugin_tag')){
+			$terms = get_the_terms( (int) $ID, 'plugin_cat' );//woocommerce cat
 	
 			if( !empty( $terms ) ) {
 				foreach( (array) $terms as $order => $term ) {
