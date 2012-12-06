@@ -106,7 +106,7 @@ if ( ! function_exists( 'mintthemes_isotopes' ) ):
 				$prefix = "category";
 			}
 			elseif(is_post_type_archive('plugin')){//woocommerce base archive page
-				$args = array('base_archive' => 'true', 'base_taxonomy' => 'product_cat', 'related_taxonomy_items' => 'product_tag');
+				$args = array('base_archive' => 'true', 'base_taxonomy' => 'plugin_cat', 'related_taxonomy_items' => 'plugin_tag');
 				$prefix = "tag";
 			}
 			else{ //base archive
