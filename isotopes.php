@@ -89,7 +89,7 @@ if ( ! function_exists( 'mintthemes_isotopes' ) ):
 				$args = array('base_taxonomy' => 'product_cat','current_taxonomy_item' => $tax, 'related_taxonomy_items' => 'product_cat' );
 				$prefix = "category";
 			}
-			elseif(is_post_type_archive('download')){//woocommerce base archive page
+			elseif(is_post_type_archive('product')){//woocommerce base archive page
 				$args = array('base_archive' => 'true', 'base_taxonomy' => 'product_cat', 'related_taxonomy_items' => 'product_tag');
 				$prefix = "tag";
 			}
@@ -215,7 +215,7 @@ if( !function_exists( 'mintthemes_isotopes_custom_taxonomy_post_class' ) ) {
 
 	function mintthemes_isotopes_custom_taxonomy_post_class( $classes, $class, $ID ) {
 		
-		if (is_tax('download_category')){
+		if (is_tax('download_category') || is_post_type_archive('download')){
 			$terms = get_the_terms( (int) $ID, 'download_tag' );//edd tags
 	
 			if( !empty( $terms ) ) {
@@ -239,7 +239,7 @@ if( !function_exists( 'mintthemes_isotopes_custom_taxonomy_post_class' ) ) {
 			}
 		}
 		
-		if (is_tax('product_cat')){
+		if (is_tax('product_cat') || is_post_type_archive('product')){
 			$terms = get_the_terms( (int) $ID, 'product_tag' );//woocommerce tags
 	
 			if( !empty( $terms ) ) {

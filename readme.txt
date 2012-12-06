@@ -1,6 +1,6 @@
 === Isotopes ===
 Contributors: johnstonphilip, morduak
-Donate link: http://example.com/
+Donate link: http://mintthemes.com/
 Tags: tags, categories, isotope, js
 Requires at least: 3.0.1
 Tested up to: 3.4
@@ -8,18 +8,17 @@ Stable tag: 4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-This plugin give you a template tag that uses isotope js functionality.
+This plugin gives you a template tag that uses isotope js functionality by David DeSandro and Metafizzy.
 
 == Description ==
 
-This plugin give you a template tag that you can put on any archive, category, or tag page
-so that you can sort the posts using the isotope js functionality.
+This plugin gives you a template tag that you can put on any archive, category, or tag page so that you can sort the posts using the isotope js functionality built by [David DeSandro and Metafizzy](http://isotope.metafizzy.co "Isotope JS"). It works with tags, categories, normal posts, and also the [Easy Digital Downloads](https://easydigitaldownloads.com "Easy Digital Downloads") and [WooCommerce](http://woothemes.com "WooCommerce") plugins.
 
 To use it, just put the following code above the loop on any archive page:
 
-if ( function_exists( 'mintthemes_isotopes' ) ): 
+`if ( function_exists( 'mintthemes_isotopes' ) ): 
 	mintthemes_isotopes(); 
-endif; 
+endif; `
 
 == Installation ==
 
@@ -62,6 +61,9 @@ This plugin is built to work only with normal posts, the Easy Digital Downloads 
 2. This is a screenshot of the isotope tags being used with the armonico theme by [Mint Themes] (http://mintthemes.com "Niche WordPress Themes"). If a user click on one of the tags, the shirts auto re-sort themselves on the fly with a cool little animation.
 
 == Changelog ==
+
+= 1.3 =
+* included is_post_type_archive in the tax/cat check for base archive pages
 
 = 1.2 =
 * taxonomy check for tag/cat filters
