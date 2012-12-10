@@ -119,7 +119,9 @@ if ( ! function_exists( 'mintthemes_isotopes' ) ):
 			if (mintthemes_isotopes_get_plugin_option( 'dropdown_vs_links' ) == 0){
 				//list of links
 				echo '<ul data-option-key="filter" class="isotopenav">';
-					echo '<li><a href="#filter" valuemint="*">All</a></li>';
+					if (!empty($tags)){
+						echo '<li><a href="#filter" valuemint="*">All</a></li>';
+					}
 					foreach($tags as $tag){
 								echo ('<li><a href="#filter" valuemint=".' . $prefix .'-' . strtolower(str_replace (" ", "-", $tag->tag_name)) . '">' . $tag->tag_name . '</a></li>');	
 					}
