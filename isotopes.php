@@ -53,6 +53,10 @@ add_action( 'wp_enqueue_scripts', 'mintthemes_isotopes_scripts' );
 if ( ! function_exists( 'mintthemes_isotopes' ) ):
 	function mintthemes_isotopes(){
 			
+			$custom_cat = mintthemes_isotopes_get_plugin_option( 'custom_cat' );
+			$custom_tag = mintthemes_isotopes_get_plugin_option( 'custom_tag' );
+			$custom_post_type = mintthemes_isotopes_get_plugin_option( 'custom_post_type' );
+			
 			if ( is_category() ) {//normal category pages
 				$args = array('base_taxonomy' => 'category','current_taxonomy_item' => get_query_var('cat'), 'related_taxonomy_items' => 'post_tag' );
 				$prefix = "tag";
@@ -93,20 +97,20 @@ if ( ! function_exists( 'mintthemes_isotopes' ) ):
 				$args = array('base_archive' => 'true', 'base_taxonomy' => 'product_cat', 'related_taxonomy_items' => 'product_tag');
 				$prefix = "tag";
 			}
-			elseif ( is_tax('plugin_cat') ) { //woocommerce category tax page
-				$term = get_term_by( 'slug', get_query_var('product_cat'), 'plugin_cat' );
+			elseif ( is_tax($custom_cat) ) { //custom category tax page
+				$term = get_term_by( 'slug', get_query_var($custom_cat), $custom_cat );
 				$tax = $term->term_id;
-				$args = array('base_taxonomy' => 'plugin_cat','current_taxonomy_item' => $tax, 'related_taxonomy_items' => 'plugin_tag' );
+				$args = array('base_taxonomy' => $custom_cat,'current_taxonomy_item' => $tax, 'related_taxonomy_items' => $custom_tag );
 				$prefix = "tag";
 			}
-			elseif ( is_tax('plugin_tag') ) { //woocommerce tag tax page
-				$term = get_term_by( 'slug', get_query_var('plugin_tag'), 'plugin_tag' );
+			elseif ( is_tax($custom_tag) ) { //custom tag tax page
+				$term = get_term_by( 'slug', get_query_var($custom_tag), $custom_tag );
 				$tax = $term->term_id;
-				$args = array('base_taxonomy' => 'plugin_cat','current_taxonomy_item' => $tax, 'related_taxonomy_items' => 'plugin_cat' );
+				$args = array('base_taxonomy' => $custom_cat,'current_taxonomy_item' => $tax, 'related_taxonomy_items' => $custom_cat );
 				$prefix = "category";
 			}
-			elseif(is_post_type_archive('plugin')){//woocommerce base archive page
-				$args = array('base_archive' => 'true', 'base_taxonomy' => 'plugin_cat', 'related_taxonomy_items' => 'plugin_tag');
+			elseif(is_post_type_archive($custom_post_type)){//custom base archive page
+				$args = array('base_archive' => 'true', 'base_taxonomy' => $custom_cat, 'related_taxonomy_items' => $custom_tag);
 				$prefix = "tag";
 			}
 			else{ //base archive
@@ -282,8 +286,8 @@ if( !function_exists( 'mintthemes_isotopes_custom_taxonomy_post_class' ) ) {
 			}
 		}
 		
-		if (is_tax('plugin_cat') || is_post_type_archive('plugin')){
-			$terms = get_the_terms( (int) $ID, 'plugin_tag' );//woocommerce tags
+		if (is_tax(mintthemes_isotopes_get_plugin_option( 'custom_cat' )) || is_post_type_archive(mintthemes_isotopes_get_plugin_option( 'custom_post_type' ))){
+			$terms = get_the_terms( (int) $ID, mintthemes_isotopes_get_plugin_option( 'custom_tag' ) );//custom tags
 	
 			if( !empty( $terms ) ) {
 				foreach( (array) $terms as $order => $term ) {
@@ -294,8 +298,8 @@ if( !function_exists( 'mintthemes_isotopes_custom_taxonomy_post_class' ) ) {
 			}
 		}
 		
-		if (is_tax('plugin_tag')){
-			$terms = get_the_terms( (int) $ID, 'plugin_cat' );//woocommerce cat
+		if (is_tax(mintthemes_isotopes_get_plugin_option( 'custom_tag' ))){
+			$terms = get_the_terms( (int) $ID, mintthemes_isotopes_get_plugin_option( 'custom_cat' ) );//custom cat
 	
 			if( !empty( $terms ) ) {
 				foreach( (array) $terms as $order => $term ) {
@@ -358,6 +362,52 @@ function mintthemes_isotopes_plugin_options_init() {
 		)
 	);
 	
+	add_settings_section(
+		'custom',
+		__( 'Custom Post Type (Optional).', 'mintthemes_isotopes' ),
+		'__return_false',
+		'mintthemes_isotopes_options'
+	);
+	
+	add_settings_field(
+		'custom_post_type',
+		__( 'Enter your custom post type slug here:', 'mintthemes_isotopes' ), 
+		'mintthemes_isotopes_settings_field_textbox',
+		'mintthemes_isotopes_options',
+		'custom',
+		array(
+			'name'        => 'custom_post_type',
+			'value'       => mintthemes_isotopes_get_plugin_option( 'custom_post_type' ),
+			'description' => __( 'Enter the slug for the custom post type (EG: custom)', 'mintthemes_isotopes' )
+		)
+	);
+	
+	add_settings_field(
+		'custom_cat',
+		__( 'The custom category slug.', 'mintthemes_isotopes' ), 
+		'mintthemes_isotopes_settings_field_textbox',
+		'mintthemes_isotopes_options',
+		'custom',
+		array(
+			'name'        => 'custom_cat',
+			'value'       => mintthemes_isotopes_get_plugin_option( 'custom_cat' ),
+			'description' => __( 'Enter the slug for the custom category taxonomy (EG: custom_cat)', 'mintthemes_isotopes' )
+		)
+	);
+	
+	add_settings_field(
+		'custom_tag',
+		__( 'The custom tag slug.', 'mintthemes_isotopes' ), 
+		'mintthemes_isotopes_settings_field_textbox',
+		'mintthemes_isotopes_options',
+		'custom',
+		array(
+			'name'        => 'custom_tag',
+			'value'       => mintthemes_isotopes_get_plugin_option( 'custom_tag' ),
+			'description' => __( 'Enter the slug for the custom tag taxonomy (EG: custom_tag)', 'mintthemes_isotopes' )
+		)
+	);
+	
 
 	
 }
@@ -407,6 +457,9 @@ function mintthemes_isotopes_get_plugin_options() {
 	$defaults = array(
 		'enable_css' 	=> '',
 		'dropdown_vs_links' 	=> '',
+		'custom_post_type' 	=> '',
+		'custom_cat' 	=> '',
+		'custom_tag' 	=> '',
 	);
 
 	$defaults = apply_filters( 'mintthemes_isotopes_default_plugin_options', $defaults );
@@ -476,6 +529,15 @@ function mintthemes_isotopes_plugin_options_validate( $input ) {
 		
 	if ( $input[ 'enable_css' ] == 0 || array_key_exists( $input[ 'enable_css' ], mintthemes_isotopes_get_categories() ) )
 		$output[ 'enable_css' ] = $input[ 'enable_css' ];
+		
+	if ( isset ( $input[ 'custom_post_type' ] ) )
+		$output[ 'custom_post_type' ] = esc_attr( $input[ 'custom_post_type' ] );
+	
+	if ( isset ( $input[ 'custom_cat' ] ) )
+		$output[ 'custom_cat' ] = esc_attr( $input[ 'custom_cat' ] );
+	
+	if ( isset ( $input[ 'custom_tag' ] ) )
+		$output[ 'custom_tag' ] = esc_attr( $input[ 'custom_tag' ] );
 		
 		
 	
