@@ -2,12 +2,12 @@
 /**
  * Template Tag for isotopes
  */
-if ( ! function_exists( 'moveplugins_isotopes' ) ):
-	function moveplugins_isotopes(){
+if ( ! function_exists( 'mp_isotopes' ) ):
+	function mp_isotopes(){
 			
-			$custom_cat = moveplugins_isotopes_get_plugin_option( 'custom_cat' );
-			$custom_tag = moveplugins_isotopes_get_plugin_option( 'custom_tag' );
-			$custom_post_type = moveplugins_isotopes_get_plugin_option( 'custom_post_type' );
+			$custom_cat = mp_isotopes_get_plugin_option( 'custom_cat' );
+			$custom_tag = mp_isotopes_get_plugin_option( 'custom_tag' );
+			$custom_post_type = mp_isotopes_get_plugin_option( 'custom_post_type' );
 			
 			if ( is_category() ) {//normal category pages
 				$args = array('base_taxonomy' => 'category','current_taxonomy_item' => get_query_var('cat'), 'related_taxonomy_items' => 'post_tag' );
@@ -70,9 +70,9 @@ if ( ! function_exists( 'moveplugins_isotopes' ) ):
 					$prefix = "tag";
 			}
 			
-			$tags = moveplugins_isotopes_get_category_tags($args);
+			$tags = mp_isotopes_get_category_tags($args);
 			
-			if (moveplugins_isotopes_get_plugin_option( 'dropdown_vs_links' ) == 0){
+			if (mp_isotopes_get_plugin_option( 'dropdown_vs_links' ) == 0){
 				//list of links
 				echo '<ul data-option-key="filter" class="isotopenav">';
 					if (!empty($tags)){
@@ -93,5 +93,22 @@ if ( ! function_exists( 'moveplugins_isotopes' ) ):
 				echo '</select>';
 			}
 	}
+endif; //mp_isotopes
+
+/**
+ * Backwards compatibility for moveplugins_isotopes
+ */
+if ( ! function_exists( 'moveplugins_isotopes' ) ):
+	function moveplugins_isotopes(){
+		mp_isotopes();
+	}
 endif; //moveplugins_isotopes
 
+/**
+ * Backwards compatibility for mintthemes_isotopes
+ */
+if ( ! function_exists( 'mintthemes_isotopes' ) ):
+	function mintthemes_isotopes(){
+		mp_isotopes();
+	}
+endif; //mintthemes_isotopes
