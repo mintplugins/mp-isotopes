@@ -1,4 +1,4 @@
-jQuery(body).ready(function($) {
+jQuery('body').ready(function($) {
 	//isotope
 	$('.moveplugins_isotopes_container').isotope({
 		// options
