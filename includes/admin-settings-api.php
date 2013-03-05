@@ -26,7 +26,7 @@ function moveplugins_isotopes_plugin_options_init() {
 		'settings',
 		array(
 			'name'        => 'dropdown_vs_links',
-			'value'       => moveplugins_isotopes_get_plugin_option( 'dropdown_vs_links' ),
+			'value'       => mp_isotopes_get_plugin_option( 'dropdown_vs_links' ),
 			'options'     => array('List of Links', 'Dropdown Menu'),
 			'description' => __( 'Do you want isotopes to use a dropdown menu or a list of links?', 'moveplugins_isotopes' )
 		)
@@ -39,7 +39,7 @@ function moveplugins_isotopes_plugin_options_init() {
 		'settings',
 		array(
 			'name'        => 'enable_css',
-			'value'       => moveplugins_isotopes_get_plugin_option( 'enable_css' ),
+			'value'       => mp_isotopes_get_plugin_option( 'enable_css' ),
 			'options'     => array('Yes, use the built in CSS.','No. I\'ll use my own CSS.'),
 			'description' => __( 'Do you want use the built in CSS for isotopes?', 'moveplugins_isotopes' )
 		)
@@ -60,7 +60,7 @@ function moveplugins_isotopes_plugin_options_init() {
 		'custom',
 		array(
 			'name'        => 'custom_post_type',
-			'value'       => moveplugins_isotopes_get_plugin_option( 'custom_post_type' ),
+			'value'       => mp_isotopes_get_plugin_option( 'custom_post_type' ),
 			'description' => __( 'Enter the slug for the custom post type (EG: custom)', 'moveplugins_isotopes' )
 		)
 	);
@@ -73,7 +73,7 @@ function moveplugins_isotopes_plugin_options_init() {
 		'custom',
 		array(
 			'name'        => 'custom_cat',
-			'value'       => moveplugins_isotopes_get_plugin_option( 'custom_cat' ),
+			'value'       => mp_isotopes_get_plugin_option( 'custom_cat' ),
 			'description' => __( 'Enter the slug for the custom category taxonomy (EG: custom_cat)', 'moveplugins_isotopes' )
 		)
 	);
@@ -86,7 +86,7 @@ function moveplugins_isotopes_plugin_options_init() {
 		'custom',
 		array(
 			'name'        => 'custom_tag',
-			'value'       => moveplugins_isotopes_get_plugin_option( 'custom_tag' ),
+			'value'       => mp_isotopes_get_plugin_option( 'custom_tag' ),
 			'description' => __( 'Enter the slug for the custom tag taxonomy (EG: custom_tag)', 'moveplugins_isotopes' )
 		)
 	);
@@ -134,7 +134,7 @@ add_action( 'admin_menu', 'moveplugins_isotopes_plugin_options_add_page' );
  *
  * @since Isotopes by Tag 1.0
  */
-function moveplugins_isotopes_get_plugin_options() {
+function mp_isotopes_get_plugin_options() {
 	$saved = (array) get_option( 'moveplugins_isotopes_options' );
 	
 	$defaults = array(
@@ -158,8 +158,8 @@ function moveplugins_isotopes_get_plugin_options() {
  *
  * @since Isotopes by Tag 1.0
  */
-function moveplugins_isotopes_get_plugin_option( $key ) {
-	$options = moveplugins_isotopes_get_plugin_options();
+function mp_isotopes_get_plugin_option( $key ) {
+	$options = mp_isotopes_get_plugin_options();
 	
 	if ( isset( $options[ $key ] ) )
 		return $options[ $key ];
@@ -223,7 +223,7 @@ function moveplugins_isotopes_plugin_options_validate( $input ) {
 		
 		
 	
-	$output = wp_parse_args( $output, moveplugins_isotopes_get_plugin_options() );	
+	$output = wp_parse_args( $output, mp_isotopes_get_plugin_options() );	
 		
 	return apply_filters( 'moveplugins_isotopes_plugin_options_validate', $output, $input );
 }

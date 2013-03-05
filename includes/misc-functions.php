@@ -2,8 +2,8 @@
 /**
  * function to get tags by category - used on archive page for isoptope js
  */
-if ( ! function_exists( 'moveplugins_isotopes_get_category_tags' ) ):
-	function moveplugins_isotopes_get_category_tags($args) {
+if ( ! function_exists( 'mp_isotopes_get_category_tags' ) ):
+	function mp_isotopes_get_category_tags($args) {
 		global $wpdb;
 
 		if (isset($args['base_archive'])){
@@ -141,8 +141,8 @@ if( !function_exists( 'moveplugins_isotopes_custom_taxonomy_post_class' ) ) {
 			}
 		}
 		
-		if (is_tax(moveplugins_isotopes_get_plugin_option( 'custom_cat' )) || is_post_type_archive(moveplugins_isotopes_get_plugin_option( 'custom_post_type' ))){
-			$terms = get_the_terms( (int) $ID, moveplugins_isotopes_get_plugin_option( 'custom_tag' ) );//custom tags
+		if (is_tax(mp_isotopes_get_plugin_option( 'custom_cat' )) || is_post_type_archive(mp_isotopes_get_plugin_option( 'custom_post_type' ))){
+			$terms = get_the_terms( (int) $ID, mp_isotopes_get_plugin_option( 'custom_tag' ) );//custom tags
 	
 			if( !empty( $terms ) ) {
 				foreach( (array) $terms as $order => $term ) {
@@ -153,8 +153,8 @@ if( !function_exists( 'moveplugins_isotopes_custom_taxonomy_post_class' ) ) {
 			}
 		}
 		
-		if (is_tax(moveplugins_isotopes_get_plugin_option( 'custom_tag' ))){
-			$terms = get_the_terms( (int) $ID, moveplugins_isotopes_get_plugin_option( 'custom_cat' ) );//custom cat
+		if (is_tax(mp_isotopes_get_plugin_option( 'custom_tag' ))){
+			$terms = get_the_terms( (int) $ID, mp_isotopes_get_plugin_option( 'custom_cat' ) );//custom cat
 	
 			if( !empty( $terms ) ) {
 				foreach( (array) $terms as $order => $term ) {

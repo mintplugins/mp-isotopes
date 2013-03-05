@@ -4,7 +4,7 @@
  */
 if ( ! function_exists( 'moveplugins_isotopes_scripts' ) ):
 	function moveplugins_isotopes_scripts() {
-		if (moveplugins_isotopes_get_plugin_option('enable_css') != 1){
+		if (mp_isotopes_get_plugin_option('enable_css') != 1){
 			wp_enqueue_style( 'moveplugins_isotopes_css', plugins_url() . '/isotopes/includes/css/style.css' );
 		}
 		wp_enqueue_style( 'moveplugins_isotopes_animation_css', plugins_url() . '/isotopes/includes/css/animation_style.css' );
