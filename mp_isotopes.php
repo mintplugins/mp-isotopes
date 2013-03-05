@@ -26,8 +26,8 @@ License: GPL2
 */
 
 /* To use this function put the following on any archive page
-if ( function_exists( 'moveplugins_isotopes' ) ): 
-	moveplugins_isotopes(); 
+if ( function_exists( 'mp_isotopes' ) ): 
+	mp_isotopes(); 
 endif;
 */
 
@@ -37,20 +37,20 @@ endif;
 |--------------------------------------------------------------------------
 */
 // Plugin version
-if( !defined( 'MOVEPLUGINS_ISOTOPES_VERSION' ) )
-	define( 'MOVEPLUGINS_ISOTOPES_VERSION', '1.0.0.0' );
+if( !defined( 'MP_ISOTOPES_VERSION' ) )
+	define( 'MP_ISOTOPES_VERSION', '1.0.0.0' );
 
 // Plugin Folder URL
-if( !defined( 'MOVEPLUGINS_ISOTOPES_PLUGIN_URL' ) )
-	define( 'MOVEPLUGINS_ISOTOPES_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+if( !defined( 'MP_ISOTOPES_PLUGIN_URL' ) )
+	define( 'MP_ISOTOPES_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
 // Plugin Folder Path
-if( !defined( 'MOVEPLUGINS_ISOTOPES_PLUGIN_DIR' ) )
-	define( 'MOVEPLUGINS_ISOTOPES_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+if( !defined( 'MP_ISOTOPES_PLUGIN_DIR' ) )
+	define( 'MP_ISOTOPES_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 
 // Plugin Root File
-if( !defined( 'MOVEPLUGINS_ISOTOPES_PLUGIN_FILE' ) )
-	define( 'MOVEPLUGINS_ISOTOPES_PLUGIN_FILE', __FILE__ );
+if( !defined( 'MP_ISOTOPES_PLUGIN_FILE' ) )
+	define( 'MP_ISOTOPES_PLUGIN_FILE', __FILE__ );
 
 /*
 |--------------------------------------------------------------------------
@@ -66,34 +66,34 @@ if( !defined( 'MOVEPLUGINS_ISOTOPES_PLUGIN_FILE' ) )
 |--------------------------------------------------------------------------
 */
 
-function moveplugins_isotopes_textdomain() {
+function mp_isotopes_textdomain() {
 
 	// Set filter for plugin's languages directory
-	$moveplugins_isotopes_lang_dir = dirname( plugin_basename( MOVEPLUGINS_ISOTOPES_PLUGIN_FILE ) ) . '/languages/';
-	$moveplugins_isotopes_lang_dir = apply_filters( 'moveplugins_isotopes_languages_directory', $moveplugins_isotopes_lang_dir );
+	$mp_isotopes_lang_dir = dirname( plugin_basename( MP_ISOTOPES_PLUGIN_FILE ) ) . '/languages/';
+	$mp_isotopes_lang_dir = apply_filters( 'mp_isotopes_languages_directory', $mp_isotopes_lang_dir );
 
 
 	// Traditional WordPress plugin locale filter
-	$locale        = apply_filters( 'plugin_locale',  get_locale(), 'isotopes' );
-	$mofile        = sprintf( '%1$s-%2$s.mo', 'isotopes', $locale );
+	$locale        = apply_filters( 'plugin_locale',  get_locale(), 'mp_isotopes' );
+	$mofile        = sprintf( '%1$s-%2$s.mo', 'mp_isotopes', $locale );
 
 	// Setup paths to current locale file
-	$mofile_local  = $moveplugins_isotopes_lang_dir . $mofile;
-	$mofile_global = WP_LANG_DIR . '/isotopes/' . $mofile;
+	$mofile_local  = $mp_isotopes_lang_dir . $mofile;
+	$mofile_global = WP_LANG_DIR . '/mp-isotopes/' . $mofile;
 
 	if ( file_exists( $mofile_global ) ) {
 		// Look in global /wp-content/languages/isotopes folder
-		load_textdomain( 'isotopes', $mofile_global );
+		load_textdomain( 'mp_isotopes', $mofile_global );
 	} elseif ( file_exists( $mofile_local ) ) {
 		// Look in local /wp-content/plugins/message_bar/languages/ folder
-		load_textdomain( 'isotopes', $mofile_local );
+		load_textdomain( 'mp_isotopes', $mofile_local );
 	} else {
 		// Load the default language files
-		load_plugin_textdomain( 'isotopes', false, $moveplugins_isotopes_lang_dir );
+		load_plugin_textdomain( 'mp_isotopes', false, $mp_isotopes_lang_dir );
 	}
 
 }
-add_action( 'init', 'moveplugins_isotopes_textdomain', 1 );
+add_action( 'init', 'mp_isotopes_textdomain', 1 );
 
 /*
 |--------------------------------------------------------------------------
@@ -101,11 +101,11 @@ add_action( 'init', 'moveplugins_isotopes_textdomain', 1 );
 |--------------------------------------------------------------------------
 */
 
-include_once( MOVEPLUGINS_ISOTOPES_PLUGIN_DIR . 'includes/enqueue-scripts-styles.php' );
-include_once( MOVEPLUGINS_ISOTOPES_PLUGIN_DIR . 'includes/template-tags.php' );
-include_once( MOVEPLUGINS_ISOTOPES_PLUGIN_DIR . 'includes/misc-functions.php' );
-include_once( MOVEPLUGINS_ISOTOPES_PLUGIN_DIR . 'includes/custom-hooks.php' );
-include_once( MOVEPLUGINS_ISOTOPES_PLUGIN_DIR . 'includes/admin-settings-api.php' );
+include_once( MP_ISOTOPES_PLUGIN_DIR . 'includes/enqueue-scripts-styles.php' );
+include_once( MP_ISOTOPES_PLUGIN_DIR . 'includes/template-tags.php' );
+include_once( MP_ISOTOPES_PLUGIN_DIR . 'includes/misc-functions.php' );
+include_once( MP_ISOTOPES_PLUGIN_DIR . 'includes/custom-hooks.php' );
+include_once( MP_ISOTOPES_PLUGIN_DIR . 'includes/admin-settings-api.php' );
 if( is_admin() ) {
 	//none at the moment
 } else {
