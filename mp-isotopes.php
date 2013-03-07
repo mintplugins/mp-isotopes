@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Isotopes
+Plugin Name: Move Plugins - Isotopes
 Plugin URI: http://moveplugins.com
 Description: This plugin gives you a template tag which you can put on any archive page isotopes functionality 
 Version: 1.0
