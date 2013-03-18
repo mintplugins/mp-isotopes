@@ -66,7 +66,8 @@ endif;
  */
 if ( ! function_exists( 'moveplugins_isotopes_container_div_start' ) ):
 	function moveplugins_isotopes_container_div_start() {
-		if (is_category() || is_tax() || is_archive() || is_tax('download_category') || is_tax('download_tag') || is_tax('product_cat') || is_tax('product_tag') || is_home()){
+		global $mp_isotopes;
+		if ($mp_isotopes == true){
 			echo '<div class="moveplugins_isotopes_container">';
 		}
 	}
@@ -78,8 +79,10 @@ add_action( 'loop_start', 'moveplugins_isotopes_container_div_start' );
  */
 if ( ! function_exists( 'moveplugins_isotopes_container_div_end' ) ):
 	function moveplugins_isotopes_container_div_end() {
-		if (is_category() || is_tax() || is_archive() || is_tax('download_category') || is_tax('download_tag') || is_tax('product_cat') || is_tax('product_tag') || is_home() ){
+		global $mp_isotopes;
+		if ($mp_isotopes == true){
 			echo '</div>';
+			$mp_isotopes = false;
 		}
 		
 	}

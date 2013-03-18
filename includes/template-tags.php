@@ -4,6 +4,9 @@
  */
 if ( ! function_exists( 'mp_isotopes' ) ):
 	function mp_isotopes(){
+		
+		global $mp_isotopes;
+		$mp_isotopes = true;
 			
 			$custom_cat = mp_isotopes_get_plugin_option( 'custom_cat' );
 			$custom_tag = mp_isotopes_get_plugin_option( 'custom_tag' );
