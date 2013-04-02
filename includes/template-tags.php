@@ -82,16 +82,16 @@ if ( ! function_exists( 'mp_isotopes' ) ):
 						echo '<li><a href="#filter" valuemint="*">All</a></li>';
 					}
 					foreach($tags as $tag){
-								echo ('<li><a href="#filter" valuemint=".' . $prefix .'-' . strtolower(str_replace (" ", "-", $tag->tag_name)) . '">' . $tag->tag_name . '</a></li>');	
+								echo ('<li><a href="#filter" valuemint=".' . $prefix .'-' . strtolower(str_replace (" ", "-", $tag->tag_slug)) . '">' . $tag->tag_name . '</a></li>');	
 					}
 				echo '</ul>';
 			}else{
 				//dropdown menu
 				echo '<select id="size" name="filter by" class="isotopenav">';
 				echo ('<option value="">View by...</option>');
-				echo ('<option value="*' . strtolower(str_replace (" ", "-", $tag->tag_name)) . '">' . 'All' . '</option>');
+				echo ('<option value="*' . strtolower(str_replace (" ", "-", $tag->tag_slug)) . '">' . 'All' . '</option>');
 				foreach($tags as $tag){
-					echo ('<option value=".tag-' . strtolower(str_replace (" ", "-", $tag->tag_name)) . '">' . $tag->tag_name . '</option>');
+					echo ('<option value=".tag-' . strtolower(str_replace (" ", "-", $tag->tag_slug)) . '">' . $tag->tag_name . '</option>');
 				}
 				echo '</select>';
 			}

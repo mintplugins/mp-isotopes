@@ -9,7 +9,7 @@ if ( ! function_exists( 'mp_isotopes_get_category_tags' ) ):
 		if (isset($args['base_archive'])){
 			$tags = $wpdb->get_results
 			("
-				SELECT DISTINCT terms2.term_id as tag_id, terms2.name as tag_name, null as tag_link
+				SELECT DISTINCT terms2.term_id as tag_id, terms2.name as tag_name, terms2.slug as tag_slug, null as tag_link
 				FROM
 					". $wpdb->posts . " as p1
 					LEFT JOIN ". $wpdb->term_relationships . " as r1 ON p1.ID = r1.object_ID
@@ -34,7 +34,7 @@ if ( ! function_exists( 'mp_isotopes_get_category_tags' ) ):
 		}else{
 			$tags = $wpdb->get_results
 			("
-				SELECT DISTINCT terms2.term_id as tag_id, terms2.name as tag_name, null as tag_link
+				SELECT DISTINCT terms2.term_id as tag_id, terms2.name as tag_name, terms2.slug as tag_slug, null as tag_link
 				FROM
 					" . $wpdb->posts . " as p1
 					LEFT JOIN ". $wpdb->term_relationships . " as r1 ON p1.ID = r1.object_ID
