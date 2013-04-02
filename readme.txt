@@ -4,7 +4,7 @@ Donate link: http://mintthemes.com/
 Tags: tags, categories, isotope, js
 Requires at least: 3.5
 Tested up to: 3.5
-Stable tag: beta1.0.0.3
+Stable tag: beta1.0.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
