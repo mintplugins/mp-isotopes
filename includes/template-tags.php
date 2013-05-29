@@ -9,8 +9,14 @@ if ( ! function_exists( 'mp_isotopes' ) ):
 		$mp_isotopes = true;
 			
 			$custom_cat = mp_isotopes_get_plugin_option( 'custom_cat' );
+			$custom_cat = empty( $custom_cat ) ? 'none' : $custom_cat;
+			
 			$custom_tag = mp_isotopes_get_plugin_option( 'custom_tag' );
+			$custom_tag = empty( $custom_tag ) ? 'none' : $custom_tag;
+			
 			$custom_post_type = mp_isotopes_get_plugin_option( 'custom_post_type' );
+			$custom_post_type = empty( $custom_post_type ) ? 'none' : $custom_post_type;
+			
 			
 			if ( is_category() ) {//normal category pages
 				$args = array('base_taxonomy' => 'category','current_taxonomy_item' => get_query_var('cat'), 'related_taxonomy_items' => 'post_tag' );
@@ -68,9 +74,12 @@ if ( ! function_exists( 'mp_isotopes' ) ):
 				$args = array('base_archive' => 'true', 'base_taxonomy' => $custom_cat, 'related_taxonomy_items' => $custom_tag);
 				$prefix = "tag";
 			}
-			else{ //base archive
+			elseif( is_post_type_archive('post') ){ //base archive
 					$args = array('base_archive' => 'true', 'base_taxonomy' => 'category', 'related_taxonomy_items' => 'post_tag');
 					$prefix = "tag";
+			}
+			else{
+				return;
 			}
 			
 			$tags = mp_isotopes_get_category_tags($args);
