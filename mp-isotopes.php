@@ -3,7 +3,7 @@
 Plugin Name: MP Isotopes
 Plugin URI: http://moveplugins.com
 Description: This plugin gives you a template tag which you can put on any archive page isotopes functionality 
-Version: beta1.0.0.9
+Version: beta1.0.1.0
 Author: Move Plugins
 Author URI: http://moveplugins.com
 License: GPL2
