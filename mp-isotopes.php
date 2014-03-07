@@ -3,13 +3,13 @@
 Plugin Name: MP Isotopes
 Plugin URI: http://moveplugins.com
 Description: This plugin gives you a template tag which you can put on any archive page isotopes functionality 
-Version: beta1.0.0.8
+Version: beta1.0.0.9
 Author: Move Plugins
 Author URI: http://moveplugins.com
 License: GPL2
 */
 
-/*  Copyright 2012  Phil Johnston  (email : phil@moveplugins.com)
+/*  Copyright 2014  Phil Johnston  (email : phil@moveplugins.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
@@ -100,16 +100,59 @@ add_action( 'init', 'mp_isotopes_textdomain', 1 );
 | INCLUDES
 |--------------------------------------------------------------------------
 */
-
-include_once( MP_ISOTOPES_PLUGIN_DIR . 'includes/enqueue-scripts-styles.php' );
-include_once( MP_ISOTOPES_PLUGIN_DIR . 'includes/template-tags.php' );
-include_once( MP_ISOTOPES_PLUGIN_DIR . 'includes/misc-functions.php' );
-include_once( MP_ISOTOPES_PLUGIN_DIR . 'includes/custom-hooks.php' );
-include_once( MP_ISOTOPES_PLUGIN_DIR . 'includes/admin-settings-api.php' );
-if( is_admin() ) {
-	//none at the moment
-} else {
-	//none at the moment
+function mp_isotopes_include_files(){
+	/**
+	 * If mp_core isn't active, stop and install it now
+	 */
+	if (!function_exists('mp_core_textdomain')){
+				
+		/**
+		 * Include Plugin Checker
+		 */
+		require( MP_ISOTOPES_PLUGIN_DIR . '/includes/plugin-checker/class-plugin-checker.php' );
+		
+		/**
+		 * Include Plugin Installer
+		 */
+		require( MP_ISOTOPES_PLUGIN_DIR . '/includes/plugin-checker/class-plugin-installer.php' );
+		
+		/**
+		 * Check if wp_core in installed
+		 */
+		require( MP_ISOTOPES_PLUGIN_DIR . 'includes/plugin-checker/included-plugins/mp-core-check.php' );
+		
+	}
+	/**
+	 * Otherwise, if mp_core is active, carry out the plugin's functions
+	 */
+	else{
+		
+		/**
+		 * Update script - keeps this plugin up to date
+		 */
+		require( MP_ISOTOPES_PLUGIN_DIR . 'includes/updater/mp-isotopes-update.php' );
+		
+		/**
+		 * Enqueue Scripts
+		 */
+		require( MP_ISOTOPES_PLUGIN_DIR . 'includes/misc-functions/enqueue-scripts-styles.php' );
+		
+		/**
+		 * Template Tags
+		 */
+		require( MP_ISOTOPES_PLUGIN_DIR . 'includes/misc-functions/template-tags.php' );
+		
+		/**
+		 * Other Misc Functions
+		 */
+		require( MP_ISOTOPES_PLUGIN_DIR . 'includes/misc-functions/misc-functions.php' );
+		
+		/**
+		 * Admin Settings API
+		 */
+		require( MP_ISOTOPES_PLUGIN_DIR . 'includes/misc-functions/admin-settings-api.php' );		
+		
+	}
 }
-
+add_action('plugins_loaded', 'mp_isotopes_include_files', 9);
 

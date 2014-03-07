@@ -1,8 +1,8 @@
 jQuery(window).ready(function($) {
-	//isotope
+	//isotope if hentry available
 	$('.moveplugins_isotopes_container').isotope({
 		// options
-		itemSelector : '.hentry',
+		itemSelector : "[class^='post-']",
 		layoutMode : 'masonry'
 	});
 	// filter items when filter link is clicked
