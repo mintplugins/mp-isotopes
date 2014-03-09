@@ -88,10 +88,10 @@ if ( ! function_exists( 'mp_isotopes' ) ):
 				//list of links
 				echo '<ul data-option-key="filter" class="isotopenav">';
 					if (!empty($tags)){
-						echo '<li><a href="#filter" valuemint="*">All</a></li>';
+						echo '<li><a class="button" href="#filter" valuemint="*">All</a></li>';
 					}
 					foreach($tags as $tag){
-								echo ('<li><a href="#filter" valuemint=".' . $prefix .'-' . strtolower(str_replace (" ", "-", $tag->tag_slug)) . '">' . $tag->tag_name . '</a></li>');	
+								echo ('<li><a class="button" href="#filter" valuemint=".' . $prefix .'-' . strtolower(str_replace (" ", "-", $tag->tag_slug)) . '">' . $tag->tag_name . '</a></li>');	
 					}
 				echo '</ul>';
 			}else{
