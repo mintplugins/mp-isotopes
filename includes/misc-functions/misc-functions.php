@@ -64,21 +64,21 @@ endif;
 /**
  * Create container div for isotopes around loop items - used on archive page for isoptope js
  */
-if ( ! function_exists( 'moveplugins_isotopes_container_div_start' ) ):
-	function moveplugins_isotopes_container_div_start() {
+if ( ! function_exists( 'mintplugins_isotopes_container_div_start' ) ):
+	function mintplugins_isotopes_container_div_start() {
 		global $mp_isotopes;
 		if ($mp_isotopes == true){
-			echo '<div class="moveplugins_isotopes_container">';
+			echo '<div class="mintplugins_isotopes_container">';
 		}
 	}
 endif;
-add_action( 'loop_start', 'moveplugins_isotopes_container_div_start' );
+add_action( 'loop_start', 'mintplugins_isotopes_container_div_start' );
 
 /**
  * End container div for isotopes around loop items - used on archive page for isoptope js
  */
-if ( ! function_exists( 'moveplugins_isotopes_container_div_end' ) ):
-	function moveplugins_isotopes_container_div_end() {
+if ( ! function_exists( 'mintplugins_isotopes_container_div_end' ) ):
+	function mintplugins_isotopes_container_div_end() {
 		global $mp_isotopes;
 		if ($mp_isotopes == true){
 			echo '</div>';
@@ -87,14 +87,14 @@ if ( ! function_exists( 'moveplugins_isotopes_container_div_end' ) ):
 		
 	}
 endif;
-add_action( 'loop_end', 'moveplugins_isotopes_container_div_end' );
+add_action( 'loop_end', 'mintplugins_isotopes_container_div_end' );
 
 /**
  * add tag-slug to the post_class() for this custom post type
  */
-if( !function_exists( 'moveplugins_isotopes_custom_taxonomy_post_class' ) ) {
+if( !function_exists( 'mintplugins_isotopes_custom_taxonomy_post_class' ) ) {
 
-	function moveplugins_isotopes_custom_taxonomy_post_class( $classes, $class, $ID ) {
+	function mintplugins_isotopes_custom_taxonomy_post_class( $classes, $class, $ID ) {
 		
 		if (is_tax('download_category') || is_post_type_archive('download')){
 			$terms = get_the_terms( (int) $ID, 'download_tag' );//edd tags
@@ -172,4 +172,4 @@ if( !function_exists( 'moveplugins_isotopes_custom_taxonomy_post_class' ) ) {
 
 	}
 } 
-add_filter( 'post_class', 'moveplugins_isotopes_custom_taxonomy_post_class', 10, 3 );
+add_filter( 'post_class', 'mintplugins_isotopes_custom_taxonomy_post_class', 10, 3 );

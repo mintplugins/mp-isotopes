@@ -2,22 +2,22 @@
 /**
  * This file contains the MP_CORE_Plugin_Installer class
  *
- * @link http://moveplugins.com/doc/plugin-installer-class/
+ * @link http://mintplugins.com/doc/plugin-installer-class/
  * @since 1.0.0
  *
  * @package    MP Core
  * @subpackage Classes
  *
- * @copyright  Copyright (c) 2013, Move Plugins
+ * @copyright  Copyright (c) 2014, Mint Plugins
  * @license    http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @author     Philip Johnston
  */
  
 /**
- * Plugin Installer Class for the mp_core Plugin by Move Plugins
+ * Plugin Installer Class for the mp_core Plugin by Mint Plugins
  *
  * @author     Philip Johnston
- * @link       http://moveplugins.com/doc/plugin-installer-class/
+ * @link       http://mintplugins.com/doc/plugin-installer-class/
  * @since      1.0.0
  * @return     void
  */
@@ -56,7 +56,8 @@ if ( !class_exists( 'MP_CORE_Plugin_Installer' ) ){
 				'plugin_download_link' => NULL,
 				'plugin_group_install' => NULL,
 				'plugin_license' => NULL,
-				'plugin_success_link' => NULL
+				'plugin_success_link' => NULL,
+				'plugin_is_theme' => false
 			);
 						
 			//Get and parse args
@@ -232,8 +233,17 @@ if ( !class_exists( 'MP_CORE_Plugin_Installer' ) ){
 			//By this point, the $wp_filesystem global should be working, so let's use it get our plugin
 			global $wp_filesystem;
 			
-			//Get the plugins directory and name the temp plugin file
-			$upload_dir = $wp_filesystem->wp_plugins_dir();
+			//If we are installing a theme
+			if ( $this->_args['plugin_is_theme'] ){
+				
+				//Get the plugins directory and name the temp plugin file
+				$upload_dir = $wp_filesystem->wp_themes_dir();
+			}
+			//If we are installing a plugin
+			else{
+				//Get the plugins directory and name the temp plugin file
+				$upload_dir = $wp_filesystem->wp_plugins_dir();
+			}
 			$filename = trailingslashit($upload_dir).'temp.zip';
 			
 			//if 'allow_url_fopen' is available, do it the right way using the WP Filesystem api
@@ -265,15 +275,47 @@ if ( !class_exists( 'MP_CORE_Plugin_Installer' ) ){
 						
 			//Delete the temp zipped file
 			$wp_filesystem->rmdir($filename);
-				
+							
 			//Display a successfully installed message
 			echo '<p>' . __( 'Successfully Installed ', 'mp_core' ) .  $this->_args['plugin_name']  . '</p>';
-		
-			//Set plugin cache to NULL so activate_plugin->validate_plugin->get_plugins will check again for new plugins
-			wp_cache_set( 'plugins', NULL, 'plugins' );
-									
-			//Activate plugin
-			print_r ( activate_plugin( trailingslashit( $upload_dir ) . $this->plugin_name_slug . '/' . $this->_args['plugin_filename'] ) );
+					
+			//If we are installing a theme
+			if ( $this->_args['plugin_is_theme'] ){
+				
+				//Set themes cache to NULL so wp_get_themes will get the new theme we just installed 
+				wp_clean_themes_cache( true );
+								
+				$installed_themes = wp_get_themes(); 
+								
+				//Loop through each installed theme
+				foreach( $installed_themes as $theme_slug => $theme ){
+					
+					echo $theme['headers:WP_Theme:private']['Name'];
+					echo $theme['plugin_name'];
+					
+					//If this theme is the theme we're hoping to install
+					if ( $theme['headers:WP_Theme:private']['Name'] == $theme['plugin_name'] ){
+						
+						//Switch to the theme we just installed
+						switch_theme( $theme_slug );
+						
+						//Stop looping
+						break;
+							
+					}
+					
+				}
+					
+			}
+			//If we are installing a plugin
+			else{
+				
+				//Set plugin cache to NULL so activate_plugin->validate_plugin->get_plugins will check again for new plugins
+				wp_cache_set( 'plugins', NULL, 'plugins' );
+			
+				//Activate plugin
+				print_r ( activate_plugin( trailingslashit( $upload_dir ) . $this->plugin_name_slug . '/' . $this->_args['plugin_filename'] ) );
+			}
 		
 			if ( !empty( $this->_args['plugin_success_link'] ) ){
 				//Javascript for redirection

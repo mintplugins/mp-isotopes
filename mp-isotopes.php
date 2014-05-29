@@ -1,15 +1,15 @@
 <?php
 /*
 Plugin Name: MP Isotopes
-Plugin URI: http://moveplugins.com
+Plugin URI: http://mintplugins.com
 Description: This plugin gives you a template tag which you can put on any archive page isotopes functionality 
-Version: beta1.0.1.1
-Author: Move Plugins
-Author URI: http://moveplugins.com
+Version: beta1.0.1.2
+Author: Mint Plugins
+Author URI: http://mintplugins.com
 License: GPL2
 */
 
-/*  Copyright 2014  Phil Johnston  (email : phil@moveplugins.com)
+/*  Copyright 2014  Phil Johnston  (email : phil@mintplugins.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 

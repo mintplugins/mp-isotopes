@@ -7,7 +7,7 @@
  * @package    MP Isotopes
  * @subpackage Functions
  *
- * @copyright  Copyright (c) 2013, Move Plugins
+ * @copyright  Copyright (c) 2014, Mint Plugins
  * @license    http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @author     Philip Johnston
  */
@@ -23,7 +23,7 @@
 	function mp_isotopes_update() {
 		$args = array(
 			'software_name' => 'MP Isotopes', //<- The exact name of this Plugin. Make sure it matches the title in your mp_repo, edd, and the WP.org repo
-			'software_api_url' => 'http://moveplugins.com',//The URL where EDD and mp_repo are installed and checked
+			'software_api_url' => 'http://mintplugins.com',//The URL where EDD and mp_repo are installed and checked
 			'software_filename' => 'mp-isotopes.php',
 			'software_licensed' => false, //<-Boolean
 		);

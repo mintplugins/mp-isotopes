@@ -108,13 +108,13 @@ if ( ! function_exists( 'mp_isotopes' ) ):
 endif; //mp_isotopes
 
 /**
- * Backwards compatibility for moveplugins_isotopes
+ * Backwards compatibility for mintplugins_isotopes
  */
-if ( ! function_exists( 'moveplugins_isotopes' ) ):
-	function moveplugins_isotopes(){
+if ( ! function_exists( 'mintplugins_isotopes' ) ):
+	function mintplugins_isotopes(){
 		mp_isotopes();
 	}
-endif; //moveplugins_isotopes
+endif; //mintplugins_isotopes
 
 /**
  * Backwards compatibility for mintthemes_isotopes
