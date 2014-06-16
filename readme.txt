@@ -4,7 +4,7 @@ Donate link: http://mintplugins.com/
 Tags: tags, categories, isotope, js
 Requires at least: 3.5
 Tested up to: 3.9
-Stable tag: 1.0.0.0
+Stable tag: 1.0.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -62,6 +62,8 @@ This plugin is built to work only with normal posts, the Easy Digital Downloads 
 
 == Changelog ==
 
+= 1.0.0.1 = June 15, 2014
+* Fixed error if no custom taxonomies are available.
 
 = 1.0.0.0 = June 15, 2014
 * Original release

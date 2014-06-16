@@ -37,18 +37,22 @@ if( !function_exists( 'mintplugins_isotopes_custom_taxonomy_post_class' ) ) {
 		
 		global $mp_isotopes, $post, $mp_isotopes_taxonomy_slugs;
 		
-		foreach( $mp_isotopes_taxonomy_slugs as $taxonomy_slug ){
+		if ( !empty( $mp_isotopes_taxonomy_slugs ) ){
 			
-			$terms = get_the_terms( (int) $ID, $taxonomy_slug );
-	
-			if( !empty( $terms ) ) {
-				foreach( (array) $terms as $order => $term ) {
-					if( !in_array( $term->slug, $classes ) ) {
-						$classes[] = "tag-" . $term->slug;
+			foreach( $mp_isotopes_taxonomy_slugs as $taxonomy_slug ){
+				
+				$terms = get_the_terms( (int) $ID, $taxonomy_slug );
+		
+				if( !empty( $terms ) ) {
+					foreach( (array) $terms as $order => $term ) {
+						if( !in_array( $term->slug, $classes ) ) {
+							$classes[] = "tag-" . $term->slug;
+						}
 					}
 				}
+					
 			}
-				
+			
 		}
 		
 		if (is_tax('download_category') || is_post_type_archive('download')){
