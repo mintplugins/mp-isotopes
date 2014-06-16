@@ -1,6 +1,4 @@
 jQuery(window).ready(function($) {
-	
-	$(window).load(function(){ 
 
 		//isotope if hentry available
 		$('.mp_isotopes_container').isotope({
@@ -22,7 +20,9 @@ jQuery(window).ready(function($) {
 			return false;
 		});
 		
-	});
+		$(window).load(function(){ 
+			$('.mp_isotopes_container').isotope('reLayout');
+		});
 
 });
 

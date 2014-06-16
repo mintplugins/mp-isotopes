@@ -62,6 +62,9 @@ This plugin is built to work only with normal posts, the Easy Digital Downloads 
 
 == Changelog ==
 
+= 1.0.0.2 = June 15, 2014
+* Added relayout instead of loading on page load
+
 = 1.0.0.1 = June 15, 2014
 * Fixed error if no custom taxonomies are available.
 
