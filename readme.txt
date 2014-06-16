@@ -1,10 +1,10 @@
-=== Isotopes ===
-Contributors: johnstonphilip, morduak
-Donate link: http://mintthemes.com/
+=== MP Isotopes ===
+Contributors: johnstonphilip, mintplugins, morduak
+Donate link: http://mintplugins.com/
 Tags: tags, categories, isotope, js
 Requires at least: 3.5
-Tested up to: 3.5
-Stable tag: beta1.0.0.5
+Tested up to: 3.9
+Stable tag: 1.0.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,8 +16,8 @@ This plugin gives you a template tag that you can put on any archive, category, 
 
 To use it, just put the following code above the loop on any archive page:
 
-`if ( function_exists( 'mintthemes_isotopes' ) ): 
-	mintthemes_isotopes(); 
+`if ( function_exists( 'mp_isotopes' ) ): 
+	mp_isotopes(); 
 endif; `
 
 == Installation ==
@@ -28,7 +28,7 @@ e.g.
 
 1. Upload the 'isotopes' folder to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Place `<?php mintthemes_isotopes(); ?>` in your archive, category, or tag templates
+1. Place `<?php mp_isotopes(); ?>` in your archive, category, or tag templates
 
 == Frequently Asked Questions ==
 
@@ -36,7 +36,7 @@ e.g.
 
 After you install, put the following tag just before 'the loop' on any archive page (ie: archive.php), category page (ie: category.php), or tag page (ie: tag.php)
 
-`<?php mintthemes_isotopes(); ?>`
+`<?php mp_isotopes(); ?>`
 
 = Why isn't this working?  =
 
@@ -62,14 +62,6 @@ This plugin is built to work only with normal posts, the Easy Digital Downloads 
 
 == Changelog ==
 
-= 1.3 =
-* included is_post_type_archive in the tax/cat check for base archive pages
 
-= 1.2 =
-* taxonomy check for tag/cat filters
-
-= 1.1 =
-* Updates to Archive base page
-
-= 1.0 =
+= 1.0.0.0 = June 15, 2014
 * Original release
