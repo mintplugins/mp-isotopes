@@ -4,7 +4,7 @@ Donate link: http://mintplugins.com/
 Tags: tags, categories, isotope, js
 Requires at least: 3.5
 Tested up to: 3.9
-Stable tag: 1.0.0.1
+Stable tag: 1.0.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -61,6 +61,9 @@ This plugin is built to work only with normal posts, the Easy Digital Downloads 
 2. This is a screenshot of the isotope tags being used with the armonico theme by [Mint Themes] (http://mintthemes.com "Niche WordPress Themes"). If a user click on one of the tags, the shirts auto re-sort themselves on the fly with a cool little animation.
 
 == Changelog ==
+
+= 1.0.0.3 = August 8, 2014
+* Added relayout on Ajax Complete.
 
 = 1.0.0.2 = June 15, 2014
 * Added relayout instead of loading on page load

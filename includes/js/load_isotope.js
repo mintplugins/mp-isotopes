@@ -20,7 +20,11 @@ jQuery(window).ready(function($) {
 			return false;
 		});
 		
-		$(window).load(function(){ 
+		$( window ).load(function(){ 
+			$('.mp_isotopes_container').isotope('reLayout');
+		});
+		
+		$( document ).ajaxComplete(function() {
 			$('.mp_isotopes_container').isotope('reLayout');
 		});
 

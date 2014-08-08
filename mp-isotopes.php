@@ -3,7 +3,7 @@
 Plugin Name: MP Isotopes
 Plugin URI: http://mintplugins.com
 Description: This plugin gives you a template tag which you can put on any archive page isotopes functionality 
-Version: 1.0.0.2
+Version: 1.0.0.3
 Author: Mint Plugins
 Author URI: http://mintplugins.com
 License: GPL2
